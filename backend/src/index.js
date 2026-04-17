@@ -5,20 +5,20 @@ import orderRoutes from './routes.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+// Allow your Vercel frontend
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://ai-laundry-order-system.vercel.app/',
+  ],
+}));
+
 app.use(express.json());
 
-// Health check
 app.get('/health', (_, res) => res.json({ status: 'ok' }));
-
-// Routes
 app.use('/api/orders', orderRoutes);
-
-// 404 fallback
 app.use((_, res) => res.status(404).json({ error: 'Not found' }));
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-  console.log(`📋 API: http://localhost:${PORT}/api/orders`);
-  console.log(`📊 Dashboard: http://localhost:${PORT}/api/orders/meta/dashboard`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
