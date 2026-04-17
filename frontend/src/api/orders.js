@@ -1,4 +1,6 @@
 const BASE = `${import.meta.env.VITE_API_URL}/api/orders`;
+console.log('API BASE:', BASE); // add this temporarily
+
 
 export const createOrder = async (data) => {
   const res = await fetch(BASE, {
