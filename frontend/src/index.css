@@ -1,0 +1,135 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); }
+
+.app { min-height: 100vh; }
+
+.app-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: var(--shadow);
+}
+
+.app-header h1 { font-size: 1.25rem; font-weight: 700; padding: 16px 0; white-space: nowrap; }
+
+nav { display: flex; gap: 4px; }
+
+.tab-btn {
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: all 0.15s;
+}
+.tab-btn:hover { background: var(--bg); color: var(--text); }
+.tab-btn.active { background: #eff6ff; color: var(--primary); font-weight: 600; }
+
+.app-main { max-width: 900px; margin: 0 auto; padding: 28px 20px; }
+
+/* Dashboard */
+.stat-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: var(--shadow);
+}
+.stat-card.highlight { border-left: 4px solid var(--primary); }
+.stat-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.stat-value { font-size: 2rem; font-weight: 700; }
+.status-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 12px; }
+.status-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid;
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow);
+}
+.status-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.status-name { flex: 1; font-size: 0.9rem; font-weight: 500; }
+.status-count { font-size: 1.4rem; font-weight: 700; }
+
+/* Form */
+.create-order { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 6px; }
+input, select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; outline: none; transition: border 0.15s; }
+input:focus, select:focus { border-color: var(--primary); }
+.create-order h3 { margin: 20px 0 12px; font-size: 1rem; }
+.garment-row { display: grid; grid-template-columns: 2fr 80px 100px 80px 24px; gap: 8px; margin-bottom: 10px; align-items: center; }
+.garment-row input { width: 100%; }
+.subtotal { font-size: 0.9rem; font-weight: 600; text-align: right; }
+.btn-remove { background: none; border: none; cursor: pointer; color: #ef4444; font-size: 1rem; padding: 4px; }
+.form-actions { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
+.total-preview { flex: 1; text-align: right; font-size: 1rem; }
+.btn-primary { padding: 10px 24px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.15s; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-secondary { padding: 10px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; font-size: 0.875rem; cursor: pointer; }
+.success-banner { background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; padding: 12px 16px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; color: #166534; }
+.success-banner button { background: none; border: none; cursor: pointer; color: #166534; font-size: 1rem; }
+.error-banner { background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 12px 16px; margin-bottom: 18px; color: #991b1b; }
+.price-hint { margin-top: 20px; padding: 12px; background: var(--bg); border-radius: 8px; font-size: 0.8rem; color: var(--text-muted); }
+
+/* Orders */
+.filters { display: flex; gap: 12px; margin-bottom: 20px; }
+.filters input { flex: 1; }
+.filters select { width: 180px; }
+.order-list { display: flex; flex-direction: column; gap: 10px; }
+.order-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.order-header { padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.1s; }
+.order-header:hover { background: var(--bg); }
+.order-id { font-weight: 700; font-family: monospace; font-size: 0.9rem; }
+.order-customer { font-weight: 600; }
+.order-phone { color: var(--text-muted); font-size: 0.875rem; }
+.order-meta { display: flex; align-items: center; gap: 12px; }
+.order-amount { font-weight: 700; }
+.status-badge { padding: 3px 10px; border-radius: 20px; color: white; font-size: 0.75rem; font-weight: 700; }
+.order-detail { padding: 16px 18px; border-top: 1px solid var(--border); background: #fafbfc; }
+.order-detail table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 0.875rem; }
+.order-detail th { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); color: var(--text-muted); font-weight: 600; }
+.order-detail td { padding: 6px 8px; }
+.order-dates { display: flex; gap: 20px; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px; }
+.status-update { display: flex; align-items: center; gap: 12px; }
+.status-update label { font-size: 0.875rem; font-weight: 600; }
+.status-update select { width: 180px; }
+.empty { color: var(--text-muted); text-align: center; padding: 40px; }
+.loading { color: var(--text-muted); text-align: center; padding: 40px; }
+
+h3 { font-size: 1rem; font-weight: 600; }
+
+@media (max-width: 600px) {
+  .stat-cards { grid-template-columns: 1fr; }
+  .status-grid { grid-template-columns: 1fr; }
+  .garment-row { grid-template-columns: 1fr 60px; }
+}
